@@ -1,0 +1,115 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 500px;
+
+    .carousel-slides {
+        display: flex;
+        transition: transform 1s ease-in-out;
+        width: 100%;
+    }
+
+    .carousel-slide {
+        position: relative;
+        min-width: 100%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5); /* Transparansi background hitam */
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            opacity: 0; /* Mulai dengan tidak terlihat */
+            transform: translateY(100%); /* Mulai dari bawah */
+            transition: all 1s ease-in-out;
+
+            .caption-title {
+                font-size: 24px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+
+            .caption-subtitle {
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+
+        .caption-content {
+            a {
+                color: white;
+                text-decoration: none;
+                transition: all 0.5s ease;
+
+                &:hover {
+                    color: #f39c12;
+                }
+            }
+        }
+    }
+
+    /* Indikator Carousel */
+    .carousel-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+    }
+
+    .indicator {
+        width: 12px;
+        height: 12px;
+        background-color: #ccc;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        &.active {
+            width: 60px; /* Persegi panjang (kapsul) */
+            height: 12px; /* Kapsul tipis */
+            border-radius: 30px; /* Membulat di sisi kanan dan kiri */
+            background-color: #f39c12;
+            position: relative;
+            overflow: hidden;
+            transition: width 0.5s ease, background-color 0.5s ease;
+        }
+
+        /* Progress bar untuk indikator aktif */
+        .progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: #fff;
+            z-index: 1; /* Pastikan progress bar berada di atas */
+            transition: width 3.5s linear; /* Durasi progress bar */
+        }
+
+        /* Indikator aktif: progress bar mengisi dari kiri ke kanan */
+        &.active .progress-bar {
+            width: 100%;
+        }
+    }
+
+    /* Tampilkan caption ketika slide aktif */
+    .carousel-slide.active .carousel-caption {
+        opacity: 1;
+        transform: translateY(0); /* Teks muncul dari bawah */
+    }
+}
